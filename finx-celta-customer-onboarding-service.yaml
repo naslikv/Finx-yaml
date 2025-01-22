@@ -1,0 +1,1300 @@
+openapi: 3.0.1
+info:
+  title: finx-celta-customer-onboarding-service
+  version: '1.0'
+servers:
+  - url: 'https://finx-celta-api-dev.fincuro.in'
+    description: Customer onboarding service
+paths:
+  /corporateEntity:
+    post:
+      tags:
+        - Corporate
+      summary: Create a new Corporate
+      operationId: createCorporate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CorporateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCorporateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /corporateEntity/update:
+    patch:
+      tags:
+        - Corporate
+      summary: Update a new Corporate
+      operationId: updateCorporate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CorporateRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateCorporateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /corporateEntity/search:
+    get:
+      tags:
+        - Corporate
+      summary: Search Corporate
+      operationId: searchCorporate
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: entityStatus
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: registerNumber
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchCorporateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /individuals:
+    post:
+      tags:
+        - Individual
+      summary: Create a New Individual
+      operationId: createIndividual
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndividualRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateIndividualResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /individuals/update:
+    patch:
+      tags:
+        - Individual
+      summary: Update an Individual
+      operationId: updateIndividual
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IndividualRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateIndividualResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /individuals/search:
+    get:
+      tags:
+        - Individual
+      summary: Search Individual
+      operationId: searchIndividual
+      parameters:
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: individualType
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: firstName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: lastName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: birthDate
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: emailAddress
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchIndividualResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /individuals/delete:
+    delete:
+      tags:
+        - Individual
+      summary: Delete Individual
+      operationId: deleteIndividual
+      parameters:
+        - name: contactId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  
+  /createRelatedIndividual:
+    post:
+      tags:
+        - Related Individual
+      summary: Create a New Related Individual
+      operationId: createRelatedIndividual
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelatedIndividualRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRelatedIndividualResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /createRelatedIndividual/update:
+    patch:
+      tags:
+        - Related Individual
+      summary: Update a Related Individual
+      operationId: updateRelatedIndividual
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelatedIndividualRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateRelatedIndividualResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /individuals/relative/search:
+    get:
+      tags:
+        - Related Individual
+      summary: Search Related Individual
+      operationId: searchRelatedIndividual
+      parameters:
+        - name: corporateId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: individualId
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchRelatedIndividualResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /case:
+    post:
+      tags:
+        - Case
+      summary: Create a New Case
+      operationId: createCase
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCaseRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /case/update:
+    patch:
+      tags:
+        - Case
+      summary: Update a case
+      operationId: updateCase
+      parameters:
+        - name: applicationId
+          in: query
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCaseRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /case/search:
+    get:
+      tags:
+        - Case
+      summary: Search Case by id
+      operationId: searchCaseById
+      parameters:
+        - name: caseId
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchCaseResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /appFormStatus/update:
+    patch:
+      tags:
+        - AppFormStatus
+      summary: Update AppFormStatus
+      operationId: updateAppFormStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppFormStatusRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppFormStatusResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /appFormStatus/get:
+    get:
+      tags:
+        - AppFormStatus
+      summary: Search AppFormStatus
+      operationId: searchAppFormStatus
+      parameters:
+        - name: caseId
+          in: query
+          required: true
+          schema:
+            type: string
+       
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchAppFormStatusResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+components:
+  schemas:
+    CorporateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        entityStatus:
+          type: integer
+        accountNumber:
+          type: string
+        countryOfIncorporationData:
+          type: string
+        riskRating:
+          type: integer
+        taxPayerId:
+          type: string
+        typeOfBusiness:
+          type: integer
+        otherBusiness:
+          type: string
+        businessDescription:
+          type: string
+        listedOnStockExchange:
+          type: integer
+        stockExchange:
+          type: string
+        isRegulated:
+          type: integer
+        regulator:
+          type: string
+        regulatorUrl:
+          type: string
+        licenseNumber:
+          type: string
+        isAudited:
+          type: integer
+        auditorName:
+          type: string
+        fyeDate:
+          type: string
+        sendAuditLetterConf:
+          type: boolean
+        pepStatus:
+          type: integer
+        copyAddress:
+          type: boolean
+        address1TypeCode:
+          type: integer
+        address1Line1:
+          type: string
+        address1City:
+          type: string
+        address1PostalCode:
+          type: string
+        address1Country:
+          type: string
+        address2Country:
+          type: string
+        address1Line2:
+          type: string
+        address1StateOrProvince:
+          type: string
+        address1Status:
+          type: integer
+        address2TypeCode:
+          type: integer
+        address2Line1:
+          type: string
+        address2City:
+          type: string
+        address2PostalCode:
+          type: string
+        address2Line2:
+          type: string
+        address2StateOrProvince:
+          type: string
+        address2status:
+          type: string
+        address1CountryValue:
+          type: string
+        address2CountryValue:
+          type: string
+        countryCode:
+          type: string
+        countryCode2:
+          type: string
+        tin:
+          type: string
+        omnibus:
+          type: boolean
+        jurisIncomeSources:
+          type: boolean
+        relatedCaseIds:
+          type: string
+    CreateCorporateResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+        ustCorporateId:
+          type: string
+    UpdateCorporateResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+    FetchCorporateResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          accountId:
+            type: string
+          corporateId:
+            type: string
+          name:
+            type: string
+          entityStatus:
+            type: integer
+          accountNumber:
+            type: string
+          countryOfIncorporationValue:
+            type: string
+          riskRating:
+            type: integer
+          taxPayerId:
+            type: string
+          typeOfBusiness:
+            type: integer
+          otherBusiness:
+            type: string
+          businessDescription:
+            type: string
+          listedOnStockExchange:
+            type: integer
+          stockExchange:
+            type: string
+          isRegulated:
+            type: integer
+          regulator:
+            type: string
+          regulatorUrl:
+            type: string
+          pepStatus:
+            type: integer
+          licenseNumber:
+            type: string
+          isAudited:
+            type: integer
+          auditorName:
+            type: string
+          fyeDate:
+            type: string
+          sendAuditLetterConf:
+            type: boolean
+          copyAddress:
+            type: boolean
+          address1TypeCode:
+            type: integer
+          address1Line1:
+            type: string
+          address1City:
+            type: string
+          address1PostalCode:
+            type: string
+          address1CountryValue:
+            type: string
+          address1Line2:
+            type: string
+          address1StateOrProvince:
+            type: string
+          address1Status:
+            type: integer
+          address2TypeCode:
+            type: integer
+          address2Line1:
+            type: string
+          address2City:
+            type: string
+          address2PostalCode:
+            type: string
+          address2CountryValue:
+            type: string
+          address2Line2:
+            type: string
+          address2StateOrProvince:
+            type: string
+          address2Status:
+            type: integer
+          address1Composite:
+            type: string
+          address2Composite:
+            type: string
+          countryCode:
+            type: string
+          address1Country:
+            type: string
+          address2Country:
+            type: string
+          countryCode2:
+            type: string
+          tin:  
+            type: string
+          omnibus:
+            type: boolean
+          jurisIncomeSources:
+            type: boolean
+          relatedCaseIds:
+            type: string
+    IndividualRequest:
+      type: object
+      properties:
+        individualType:
+          type: string
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        birthDate:
+          type: string
+        nationality:
+          type: string
+        emailAddress1:
+          type: string
+        countryCode:
+          type: string
+        mobilephone:
+          type: string
+        workphone:
+          type: string
+        linkedinProfile:
+          type: string
+        tin:
+          type: string
+        copyAddress:
+          type: boolean
+        address1TypeCode:
+          type: integer
+        address1Line1:
+          type: string
+        address1City:
+          type: string
+        address1PostalCode:
+          type: string
+        address1Country:
+          type: string
+        address1Line2:
+          type: string
+        address1StateOrProvince:
+          type: string
+        address1Status:
+          type: integer
+        address2TypeCode:
+          type: integer
+        address2Line1:
+          type: string
+        address2City:
+          type: string
+        address2PostalCode:
+          type: string
+        address2Line2:
+          type: string
+        address2StateOrProvince:
+          type: string
+        address2status:
+          type: string
+        address2Country:
+          type: string
+        taxResidency:
+          type: string
+        position:
+          type: string
+    CreateIndividualResponse:
+      type: object
+      properties:
+        contactId:
+          type: string
+        individualId:
+          type: string
+    UpdateIndividualResponse:
+      type: object
+      properties:
+        contactId:
+          type: string
+    FetchIndividualResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          individualType:
+            type: string
+          birthDate:
+            type: string
+          firstName:
+            type: string
+          lastName:
+            type: string
+          middleName:
+            type: string
+          nationalityValue:
+            type: string
+          emailAddress1:
+            type: string
+          countryCode:
+            type: string
+          mobilephone:
+            type: string
+          workphone:
+            type: object
+          copyAddress:
+            type: boolean
+          address1TypeCode:
+            type: integer
+          address1Line1:
+            type: string
+          address1City:
+            type: string
+          address1PostalCode:
+            type: string
+          address1CountryValue:
+            type: string
+          address1Line2:
+            type: string
+          address1StateOrProvince:
+            type: string
+          address1Status:
+            type: integer
+          address2TypeCode:
+            type: integer
+          address2Line1:
+            type: string
+          address2City:
+            type: string
+          address2PostalCode:
+            type: string
+          address2CountryValue:
+            type: string
+          address2Line2:
+            type: string
+          address2StateOrProvince:
+            type: string
+          address2Status:
+            type: integer
+          contactId:
+            type: string
+          address1Composite:
+            type: string
+          address2Composite:
+            type: string
+          taxResidency:
+            type: string
+          tin:  
+            type: string
+          position:
+            type: string
+    RelatedIndividualRequest:
+      type: object
+      properties:
+        status:
+          type: string
+        individualId:
+          type: string
+        corporateId:
+          type: string
+        isAuthorisedSignatory:
+          type: integer
+        jobTitle:
+          type: string
+        isOnlineBankingUser:
+          type: integer
+        isExecutiveManagement:
+          type: integer
+        relationship:
+          type: string
+        relatedCaseIds:
+          type: string
+    CreateRelatedIndividualResponse:
+      type: object
+      properties:
+        corporateId:
+          type: string
+        individualId:
+          type: string
+        jobTitle:
+          type: string
+        status:
+          type: integer
+        relatedIndividualsId:
+          type: string
+        relatedCaseIds:
+          type: string
+    UpdateRelatedIndividualResponse:
+      type: object
+      properties:
+        relatedIndividualsId:
+          type: string
+    FetchRelatedIndividualResponse:
+      type: object
+      properties:
+        corporateValue:
+          type: string
+        individualValue:
+          type: string
+        jobTitle:
+          type: string
+        status:
+          type: string
+        relatedIndividualsId:
+          type: string
+        isAuthorisedSignatory:
+          type: integer
+        isOnlineBankingUser:
+          type: integer
+        isExecutiveManagement:
+          type: integer
+        relationship:
+          type: string
+        relatedCaseIds:
+          type: string
+    CreateCaseRequest:
+      type: object
+      properties:
+        caseType:
+          type: integer
+        caseCategory:
+          type: integer
+        caseStatus:
+          type: integer
+        purposeOfAccount:
+          type: integer
+        dueDate:
+          type: string
+        prospectiveCorporate:
+          type: string
+        prospectiveContact:
+          type: string
+        prospCountryOfIncorp:
+          type: string
+        introducerCorporate:
+          type: string
+        introducerContact:
+          type: string
+        introCountryOfIncorp:
+          type: string
+        fundingMethod:
+          type: string
+        currency:
+          type: string
+        avgExpDailyAccBalance:
+          type: integer
+        expectedOfIncomingPayments:
+          type: integer
+        expectedOfOutGoingPayments:
+          type: integer
+        jurisIncomeSources:
+          type: integer
+        paymentJurisDiction:
+          type: integer
+        qualifyingDecision:
+          type: integer
+        escalationDecision:
+          type: integer
+        reasonForEscalation:
+          type: string
+        reasonForDecline:
+          type: integer
+        appTakingStatus:
+          type: integer
+        purposeOfTheAccountDescription:
+          type: string
+        incomeFromJurisdictions:
+          type: string
+    CaseResponse:
+      type: object
+      properties:
+        applicationId:
+          type: string
+        caseId:
+          type: string
+    UpdateCaseRequest:
+      type: object
+      properties:
+        caseType:
+          type: integer
+        caseCategory:
+          type: integer
+        caseStatus:
+          type: integer
+        purposeOfAccount:
+          type: integer
+        dueDate:
+          type: string
+        prospectiveCorporate:
+          type: string
+        prospectiveContact:
+          type: string
+        prospCountryOfIncorp:
+          type: string
+        introducerCorporate:
+          type: string
+        introducerContact:
+          type: string
+        introCountryOfIncorp:
+          type: string
+        fundingMethod:
+          type: string
+        currency:
+          type: string
+        avgExpDailyAccBalance:
+          type: integer
+        expectedOfIncomingPayments:
+          type: integer
+        expectedOfOutGoingPayments:
+          type: integer
+        jurisIncomeSources:
+          type: integer
+        paymentJurisDiction:
+          type: integer
+        qualifyingDecision:
+          type: integer
+        escalationDecision:
+          type: integer
+        reasonForEscalation:
+          type: string
+        reasonForDecline:
+          type: integer
+        appTakingStatus:
+          type: integer
+        task:
+          type: integer
+        purposeOfTheAccountDescription:
+          type: string
+        incomeFromJurisdictions:
+          type: string
+    FetchCaseResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          applicationId:
+            type: string
+          appTakingStatus:
+            type: integer
+          avgExpDailyAccBalance:
+            type: string
+          caseCategory:
+            type: integer
+          caseId:
+            type: string
+          reasonForEscalation:
+            type: string
+          caseStatus:
+            type: integer
+          caseType:
+            type: integer
+          currency:
+            type: string
+          dueDate:
+            type: string
+          escalationDecision:
+            type: integer
+          expectedOfIncomingPayments:
+            type: integer
+          expectedOfOutGoingPayments:
+            type: integer
+          fundingMethod:
+            type: string
+          introducerContactValue:
+            type: string
+          introducerCorporateValue:
+            type: string
+          incomeFromBlackListedJurisdictions:
+            type: integer
+          paymentsFromBlacklistedJurisDiction:
+            type: integer
+          prospectiveContactValue:
+            type: string
+          prospectiveCorporateValue:
+            type: string
+          purposeOfAccount:
+            type: integer
+          qualifyingDecision:
+            type: integer
+          reasonForDecline:
+            type: integer
+          prospectiveCorporate:
+              $ref: '#/components/schemas/ProspectiveCorporate'
+          task:
+            type: integer
+          purposeOfTheAccountDescription:
+            type: string
+          incomeFromJurisdictions:
+            type: string
+    ProspectiveCorporate:
+      type: object
+      properties:
+        name:
+          type: string
+        accountId: 
+          type: string
+    AppFormStatusRequest:
+      type: object
+      properties:
+        progress:
+          type: string
+        caseId:
+          type: string
+        appFormStatus:
+          type: string
+        caseOfficerReview:
+          type: integer
+    AppFormStatusResponse:
+      type: object
+      properties:
+        applicationFormStatusId:
+          type: string
+    FetchAppFormStatusResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          appFormStatus:
+            type: integer
+          progress:
+            type: integer
+          applicationFormstatusId:
+            type: string
+          comments:
+            type: string
+          caseOfficerReview:
+            type: integer
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
