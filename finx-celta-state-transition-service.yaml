@@ -1,0 +1,381 @@
+openapi: 3.0.1
+info:
+  title: finx-celta-state-transition-service
+  version: '1.0'
+  description:  State transition service
+servers:
+  - url: 'https://finx-celta-api-dev.fincuro.in'
+paths:
+  /v1/transitions/account-requests:
+    get:
+      tags:
+        - Account request
+      summary: List account requests
+      operationId: listAccountRequests
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRequestResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - Account request
+      summary: Initiate a new account request
+      operationId: initiateAccountRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRequestResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  
+  /v1/transitions/account-requests/{accountRequestId}:
+    get:
+      tags:
+        - Account request
+      summary: Get Account Request By Id
+      operationId: getAccountRequestById
+      parameters:
+        - name: accountRequestId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRequestResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+    patch:
+      tags:
+        - Account request
+      summary: Update account request
+      operationId: updateAccountRequest
+      parameters:
+        - name: accountRequestId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRequestResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /v1/transitions/account-requests/{accountRequestId}/approvals:
+    post:
+      tags:
+        - Account request
+      summary: Approve/Reject account request
+      operationId: approveRequest
+      parameters:
+        - name: accountRequestId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRequestApproval'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountRequestApprovalResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /v1/transitions/account-requests/audit-logs:
+    get:
+      tags:
+        - Account request
+      summary: Fetch Account request audit logs
+      operationId: fetchAccountRequestAuditLogs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLog'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  
+components:
+  schemas:
+    AccountRequest:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountNumber:
+          type: string
+        productId:
+          type: string
+        productName:
+          type: string
+        productType:
+          type: string
+        reason:
+          type: string
+        status:
+          type: string
+        requestType:
+          type: string
+        modifiedBy:
+          type: string
+        createdBy: 
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    AccountRequestResponse:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+        productId:
+          type: string
+        productName:
+          type: string
+        productType:
+          type: string
+        reason:
+          type: string
+        status:
+          type: string
+        requestType:
+          type: string
+    AccountClosureDetailsDTO:
+      type: object
+      properties:
+        accountRequestId:
+          type: integer
+        isOutstandingPayments:
+          type: boolean
+        outstandingAmount:
+          type: number
+        isFullyRecoverable:
+          type: boolean
+        isWriteOffRequired:
+          type: boolean
+        writeOffReference:
+          type: string
+        isGlEntryRequired:
+          type: boolean
+        glEntryType:
+          type: string
+        glEntryReference:
+          type: string
+        isFundsAvailable:
+          type: boolean
+        isRemainingBalanceAvailable:
+          type: boolean
+        isBankTransferRequired:
+          type: boolean
+        bankDetails:
+          type: object
+        isGlParkInRequired:
+          type: boolean
+        glParkInReference:
+          type: string
+        closureProcessStatus:
+          type: string
+        closureRemarks:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    AccountRequestApproval:
+      type: object
+      properties: 
+        accountRequestId:
+          type: integer
+        action:
+          type: string
+        remarks:
+          type: string
+    AccountRequestApprovalResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountRequestId:
+          type: integer
+        action:
+          type: string
+        remarks:
+          type: string
+    AuditLog:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountRequestId:
+          type: integer
+        oldStatus:
+          type: string
+        newStatus:
+          type: string
+        remarks:
+          type: string
+        updatedBy:
+          type: string
+        updatedAt:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
