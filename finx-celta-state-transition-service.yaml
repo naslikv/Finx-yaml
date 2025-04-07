@@ -1,0 +1,377 @@
+openapi: 3.0.1
+info:
+  title: finx-celta-state-transition-service
+  version: '1.0'
+  description:  State transition service
+servers:
+  - url: 'https://finx-celta-api-dev.fincuro.in'
+paths:
+  /v1/transitions/closures:
+    get:
+      tags:
+        - Account Closure request
+      summary: List Closure requests
+      operationId: listClosureRequests
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountClosureDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+    post:
+      tags:
+        - Account Closure request
+      summary: Initiate a new account closure request
+      operationId: initiateClosureRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountClosureRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountClosureDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  
+  /v1/transitions/closures/{closureRequestId}:
+    get:
+      tags:
+        - Account Closure request
+      summary: Get Closure Request By Id
+      operationId: getClosureRequestById
+      parameters:
+        - name: closureRequestId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountClosureDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+    patch:
+      tags:
+        - Account Closure request
+      summary: Update account closure request
+      operationId: updateAccountClosureRequest
+      parameters:
+        - name: closureRequestId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountClosureRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountClosureDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /v1/transitions/closures/{closureRequestId}/approvals:
+    post:
+      tags:
+        - Account Closure request
+      summary: Approve/Reject account closure request
+      operationId: approveClosureRequest
+      parameters:
+        - name: closureRequestId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountClosureApprovalRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountClosureApprovalDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  /v1/transitions/closures/audit-logs:
+    get:
+      tags:
+        - Account Closure request
+      summary: Fetch Closure request audit logs
+      operationId: fetchClosureRequestAuditLogs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuditLogDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      security:
+        - bearerAuth: []
+  
+components:
+  schemas:
+    AccountClosureDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        accountNumber:
+          type: string
+        productId:
+          type: string
+        productName:
+          type: string
+        reason:
+          type: string
+        status:
+          type: string
+        requestType:
+          type: string
+        modifiedBy:
+          type: string
+        createdBy: 
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    AccountClosureRequestDTO:
+      type: object
+      properties:
+        accountNumber:
+          type: string
+        productId:
+          type: string
+        productName:
+          type: string
+        reason:
+          type: string
+        status:
+          type: string
+        requestType:
+          type: string
+    AccountClosureDetailsDTO:
+      type: object
+      properties:
+        accountClosureRequestId:
+          type: integer
+        isOutstandingPayments:
+          type: boolean
+        outstandingAmount:
+          type: number
+        isFullyRecoverable:
+          type: boolean
+        isWriteOffRequired:
+          type: boolean
+        writeOffReference:
+          type: string
+        isGlEntryRequired:
+          type: boolean
+        glEntryType:
+          type: string
+        glEntryReference:
+          type: string
+        isFundsAvailable:
+          type: boolean
+        isRemainingBalanceAvailable:
+          type: boolean
+        isBankTransferRequired:
+          type: boolean
+        bankDetails:
+          type: object
+        isGlParkInRequired:
+          type: boolean
+        glParkInReference:
+          type: string
+        closureProcessStatus:
+          type: string
+        closureRemarks:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    AccountClosureApprovalRequestDTO:
+      type: object
+      properties: 
+        closureRequestId:
+          type: integer
+        action:
+          type: string
+        remarks:
+          type: string
+    AccountClosureApprovalDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        closureRequestId:
+          type: integer
+        action:
+          type: string
+        remarks:
+          type: string
+    AuditLogDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+        closureRequestId:
+          type: integer
+        oldStatus:
+          type: string
+        newStatus:
+          type: string
+        remarks:
+          type: string
+        updatedBy:
+          type: string
+        updatedAt:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
